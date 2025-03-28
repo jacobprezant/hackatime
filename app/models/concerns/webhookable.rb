@@ -5,11 +5,10 @@ module Webhookable
     after_save :omit_webhook
   end
 
-  class_methods do
-    private
+  def omit_webhook
+    puts "Omitting webhook!"
+  end
 
-    def omit_webhook
-      puts "Omitting webhook!"
-    end
+  class_methods do
   end
 end
