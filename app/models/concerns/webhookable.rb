@@ -6,9 +6,17 @@ module Webhookable
   end
 
   def omit_webhook
-    puts "Omitting webhook!"
-  end
+    payload = {
+      username: user.username,
+      avatar_url: user.slack_avatar_url || user.github_avatar_url,
+      editor:,
+      language:,
+      operating_system:,
+      ip_address:,
+      user_seconds_today: user.heartbeats.today.duration_seconds,
+      global_seconds_today: self.class.today.group(:user_id).duration_seconds.values.sum
+      }.to_json
 
-  class_methods do
+    return payload
   end
 end
