@@ -46,11 +46,41 @@ class User < ApplicationRecord
     ).order(created_at: :desc).limit(10).all
   end
 
-  def format_extension_text(duration)
-    case hackatime_extension_text_type
+  def leaderboard_rank_text
+    @leaderboard_rank_text ||= begin
+      entry = LeaderboardEntry.joins(:leaderboard)
+                                .where(user: self)
+                                .where(leaderboards: { period_type: [ :daily, :weekly, :last_7_days ] })
+                                .where(rank: 1..3)
+                                .order("leaderboards.period_type ASC")
+                                .first
+
+      return nil unless entry
+
+      rank_emoji = {
+        1 => "🥇",
+        2 => "🥈",
+        3 => "🥉"
+      }[entry.rank]
+
+      leaderboard_type = case entry.leaderboard.period_type
+      when "daily" then "daily"
+      when "weekly" then "weekly"
+      when "last_7_days" then "7-day"
+      end
+
+      "#{rank_emoji} on #{leaderboard_type} ldbrd"
+    end
+  end
+
+  def format_extension_text(duration, text_type = hackatime_extension_text_type)
+    case text_type
     when "simple_text"
       return "Start coding to track your time" if duration.zero?
-      ::ApplicationController.helpers.short_time_simple(duration)
+
+      msg = ::ApplicationController.helpers.short_time_simple(duration)
+      msg += " (#{leaderboard_rank_text})" if leaderboard_rank_text.present?
+      msg
     when "clock_emoji"
       ::ApplicationController.helpers.time_in_emoji(duration)
     when "compliment_text"
