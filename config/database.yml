@@ -13,8 +13,8 @@ development:
     <<: *default
     adapter: postgresql
     encoding: unicode
-    pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-    url: <%= ENV['DATABASE_URL'] %>
+    pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 2 } %>
+    url: <%= ENV['PROD_DATABASE_URL'] %>
   wakatime:
     adapter: postgresql
     encoding: unicode
