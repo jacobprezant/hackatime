@@ -3,6 +3,38 @@
   <% if @user %>
     <h1>Membership for <%= render "shared/user_mention", user: @user %></h1>
     
+    <div class="premium-card-showcase">
+      <div class="cards-row">
+        <div class="card-container diamond">
+          <div class="premium-card">
+            <div class="card-content">
+              <div class="card-header">
+                <div class="hack-club-logo">HACK CLUB</div>
+                <div class="chip"></div>
+              </div>
+              <div class="card-body">
+                <div class="hack-club-emblem">
+                  <%= image_tag "/flag-standalone-bw.png", class: "flag-icon", alt: "Hack Club Flag" %>
+                </div>
+              </div>
+              <div class="card-footer">
+                <div class="card-number">7997</div>
+                <div class="member-info">
+                  Member<br>
+                  Since<br>
+                  <strong><%= @member_since&.strftime("%y") || "23" %></strong>
+                </div>
+                <div class="cardholder-info">
+                  <div class="cardholder-name"><%= @user.display_name&.upcase || "DEVEN" %></div>
+                  <div class="card-label">Preferred Diamond</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
     <div class="membership-details">
       <% if @membership.member_since %>
         <p title="<%= @membership.member_since.strftime("%B %d, %Y") %>">

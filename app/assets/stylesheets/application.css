@@ -503,55 +503,152 @@ code {
 
 .status-card {
   background: white;
-  border: 1px solid #e5e5e5;
-  border-radius: 8px;
-  padding: 1.5rem;
+  border: none;
+  border-radius: 2px;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.2, 1, 0.3, 1);
+  background-image: 
+    linear-gradient(135deg, rgba(255,255,255,0.03) 0%, transparent 50%);
+  box-shadow: 
+    0 1px 3px rgba(0,0,0,0.02),
+    0 1px 2px rgba(0,0,0,0.04);
+}
+
+.status-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.02) 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.status-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 
+    0 20px 40px rgba(0,0,0,0.06),
+    0 8px 16px rgba(0,0,0,0.02);
+}
+
+.status-card:hover::before {
+  opacity: 1;
 }
 
 .status-icon {
-  width: 32px;
-  height: 32px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  transition: transform 0.4s cubic-bezier(0.2, 1, 0.3, 1);
+  position: relative;
+  z-index: 2;
+}
+
+.status-card:hover .status-icon {
+  transform: scale(1.05);
 }
 
 .status-icon.bronze {
-  background: #CD7F32;
+  background: linear-gradient(135deg, #CD7F32 0%, #8B4513 100%);
+  box-shadow: 0 4px 12px rgba(205, 127, 50, 0.2);
 }
 
 .status-icon.silver {
-  background: #C0C0C0;
+  background: linear-gradient(135deg, #E8E8E8 0%, #A8A8A8 100%);
+  box-shadow: 0 4px 12px rgba(192, 192, 192, 0.2);
 }
 
 .status-icon.gold {
-  background: #FFD700;
+  background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.2);
 }
 
 .status-icon.diamond {
-  background: #B9F2FF;
+  background: linear-gradient(135deg, #E8F5F7 0%, #B9F2FF 100%);
+  box-shadow: 0 4px 12px rgba(185, 242, 255, 0.3);
 }
 
 .status-card h3 {
-  font-size: 1.5rem;
-  margin-bottom: 1.5rem;
-  color: #333;
+  font-size: 1.75rem;
+  margin-bottom: 2rem;
+  color: #1a1a1a;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.4s ease;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+}
+
+.status-card:hover h3 {
+  transform: none;
 }
 
 .requirements {
-  color: #333;
+  color: #1a1a1a;
+  position: relative;
+  z-index: 2;
 }
 
 .requirements p {
-  margin: 0.5rem 0;
-  font-size: 1.1rem;
-  line-height: 1.4;
+  margin: 0.75rem 0;
+  font-size: 1rem;
+  line-height: 1.6;
+  letter-spacing: 0.3px;
+  font-weight: 400;
+  transition: transform 0.4s ease;
+}
+
+.status-card:hover .requirements p {
+  transform: none;
 }
 
 .requirements .or {
   color: #666;
-  font-style: italic;
-  margin: 0.5rem 0;
-  font-size: 1rem;
+  font-style: normal;
+  margin: 0.75rem 0;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+.status-card:hover .requirements .or {
+  opacity: 0.8;
+}
+
+/* Add subtle border animation on hover */
+.status-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 1px solid rgba(0,0,0,0.1);
+  transition: all 0.4s ease;
+  pointer-events: none;
+}
+
+.status-card:hover::after {
+  border: 1px solid rgba(0,0,0,0.15);
+}
+
+@media (hover: hover) {
+  .status-card {
+    will-change: transform;
+  }
+}
+
+@media (hover: none) {
+  .status-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
 }
 
 .preferred-benefits-section {
@@ -622,5 +719,565 @@ code {
 @media (max-width: 640px) {
   .benefits-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* Main container styling */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Banner styling */
+.membership-banner {
+  margin: -2rem -2rem 3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.membership-banner img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Main heading styling */
+h1 {
+  font-size: 2.5rem;
+  font-weight: 300;
+  letter-spacing: 1px;
+  color: #1a1a1a;
+  margin-bottom: 1.5rem;
+}
+
+/* Description text styling */
+.membership-description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #333;
+  max-width: 800px;
+  margin-bottom: 2.5rem;
+  letter-spacing: 0.3px;
+  font-weight: 300;
+}
+
+/* Status check button styling */
+.status-check {
+  margin-bottom: 4rem;
+  position: relative;
+}
+
+.button {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  background-color: #1a1a1a;
+  color: white;
+  text-decoration: none;
+  border-radius: 2px;
+  font-size: 0.95rem;
+  letter-spacing: 1.5px;
+  transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+  border: none;
+  font-weight: 400;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Gradient overlay effect */
+.button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 51%,
+    transparent 100%
+  );
+  background-size: 250% 100%;
+  background-position: 100% 0;
+  transition: background-position 0.6s cubic-bezier(0.2, 1, 0.3, 1);
+  z-index: -1;
+}
+
+/* Subtle border effect */
+.button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.4s ease;
+  pointer-events: none;
+}
+
+/* Hover state */
+.button:hover {
+  background-color: #000;
+  transform: translateY(-2px);
+  box-shadow: 
+    0 6px 20px rgba(0, 0, 0, 0.15),
+    0 2px 8px rgba(0, 0, 0, 0.1);
+  letter-spacing: 2px;
+}
+
+.button:hover::before {
+  background-position: 0 0;
+}
+
+.button:hover::after {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Active state */
+.button:active {
+  transform: translateY(0);
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.1),
+    0 1px 4px rgba(0, 0, 0, 0.05);
+  transition-duration: 0.1s;
+}
+
+/* Focus state */
+.button:focus {
+  outline: none;
+}
+
+/* Button glow effect */
+.status-check::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120%;
+  height: 120%;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 0.1) 0%,
+    transparent 70%
+  );
+  transform: translate(-50%, -50%) scale(0.8);
+  opacity: 0;
+  transition: all 0.6s cubic-bezier(0.2, 1, 0.3, 1);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.status-check:hover::before {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}
+
+/* Button text effect */
+.button span {
+  display: inline-block;
+  transform: translateY(0);
+  transition: transform 0.2s ease;
+}
+
+.button:hover span {
+  transform: translateY(-1px);
+}
+
+/* Ripple effect on click */
+@keyframes ripple {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0.4;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+  }
+}
+
+.button.clicked::before {
+  animation: ripple 0.6s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+/* Add this JavaScript to make the ripple effect work */
+.button-js-ripple {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: transparent;
+  pointer-events: none;
+}
+
+/* Section headings */
+.preferred-status-section h2,
+.preferred-benefits-section h2 {
+  font-size: 2rem;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  color: #1a1a1a;
+  margin-bottom: 1.5rem;
+}
+
+/* Section explanations */
+.status-explanation,
+.benefits-intro {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #333;
+  max-width: 800px;
+  margin-bottom: 3rem;
+  letter-spacing: 0.3px;
+  font-weight: 300;
+}
+
+/* Benefits section styling */
+.preferred-benefits-section {
+  margin: 6rem 0;
+  position: relative;
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.benefit-card {
+  background: white;
+  padding: 2rem;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 2px;
+  transition: all 0.4s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+.benefit-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+  border-color: rgba(0,0,0,0.15);
+}
+
+.benefit-card h3 {
+  font-size: 1.4rem;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  color: #1a1a1a;
+  margin-bottom: 1.5rem;
+}
+
+.benefits-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.benefits-list li {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  letter-spacing: 0.3px;
+  color: #333;
+}
+
+.benefit-icon {
+  font-style: normal;
+  margin-right: 1rem;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  opacity: 0.9;
+}
+
+/* Section dividers */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(0,0,0,0.1), transparent);
+  margin: 4rem 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .benefits-grid,
+  .status-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  .preferred-status-section h2,
+  .preferred-benefits-section h2 {
+    font-size: 1.75rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .benefits-grid,
+  .status-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .container {
+    padding: 1rem;
+  }
+  
+  .membership-banner {
+    margin: -1rem -1rem 2rem;
+  }
+}
+
+/* Membership Cards Layout */
+.premium-card-showcase {
+  width: 100%;
+  padding: 2rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+.cards-row {
+  width: 600px;
+}
+
+.card-container {
+  width: 600px;
+  height: 340px;
+  perspective: 1500px;
+  position: relative;
+  cursor: pointer;
+}
+
+.premium-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border-radius: 20px;
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.1),
+    0 3px 10px rgba(0, 0, 0, 0.07);
+  background: linear-gradient(135deg, #c7f5ff 0%, #b9f2ff 50%, #9ee8ff 100%);
+  overflow: hidden;
+}
+
+.card-container:hover .premium-card {
+  transform: rotateY(5deg) rotateX(-2deg) translateZ(10px);
+  box-shadow: 
+    20px 20px 60px rgba(0, 0, 0, 0.1),
+    1px 1px 0px 1px rgba(255, 255, 255, 0.5);
+}
+
+/* Holographic effect */
+.premium-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    125deg,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(255, 255, 255, 0.2) 10%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: 2;
+}
+
+.card-container:hover .premium-card::before {
+  opacity: 1;
+}
+
+/* Rainbow shine effect */
+.premium-card::after {
+  content: '';
+  position: absolute;
+  top: -400%;
+  left: -100%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.13) 0%,
+    rgba(255, 255, 255, 0.13) 77%,
+    rgba(255, 255, 255, 0.5) 92%,
+    rgba(255, 255, 255, 0.0) 100%
+  );
+  transform: rotate(30deg);
+  transition: all 0.5s ease;
+}
+
+.card-container:hover .premium-card::after {
+  top: -150%;
+  left: -50%;
+  animation: shine 3s infinite;
+}
+
+@keyframes shine {
+  to {
+    top: 150%;
+    left: 50%;
+  }
+}
+
+.card-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 3;
+  color: #1a1a1a;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.hack-club-logo {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #1a1a1a;
+}
+
+.chip {
+  width: 50px;
+  height: 40px;
+  background: #FFD700;
+  border-radius: 6px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.hack-club-emblem {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.card-container:hover .hack-club-emblem {
+  transform: scale(1.05);
+}
+
+.flag-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: auto;
+}
+
+.card-number {
+  font-size: 28px;
+  letter-spacing: 2px;
+  font-family: monospace;
+  font-weight: 500;
+}
+
+.member-info {
+  text-align: center;
+  font-size: 10px;
+  line-height: 1.4;
+  letter-spacing: 1px;
+  opacity: 0.8;
+  text-transform: uppercase;
+}
+
+.member-info strong {
+  display: block;
+  font-size: 14px;
+  margin-top: 2px;
+}
+
+.cardholder-info {
+  text-align: right;
+}
+
+.cardholder-name {
+  font-size: 24px;
+  letter-spacing: 1px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.card-label {
+  font-size: 12px;
+  letter-spacing: 2px;
+  opacity: 0.7;
+  text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+  .premium-card-showcase {
+    padding: 1rem;
+  }
+  
+  .cards-row {
+    width: 100%;
+  }
+  
+  .card-container {
+    width: 100%;
+    height: 240px;
+  }
+  
+  .card-content {
+    padding: 20px;
+  }
+  
+  .hack-club-logo {
+    font-size: 18px;
+  }
+  
+  .hack-club-emblem {
+    width: 60px;
+    height: 60px;
+    padding: 10px;
+  }
+  
+  .card-number {
+    font-size: 20px;
+  }
+  
+  .cardholder-name {
+    font-size: 18px;
   }
 }

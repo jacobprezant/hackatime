@@ -12,9 +12,12 @@
   </p>
   
   <div class="status-check">
-    <%= link_to "Check my status", my_membership_path, class: "button" %>
+    <%= link_to my_membership_path, class: "button" do %>
+      <span>Check my status</span>
+      <div class="button-js-ripple"></div>
+    <% end %>
   </div>
-  
+
   <div class="preferred-status-section">
     <h2>Preferred Status Levels</h2>
     
