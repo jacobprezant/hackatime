@@ -5,12 +5,14 @@ class Airtable::HackClubber < Airrecord::Table
   self.table_name = "Synced - Hack Clubbers"
 
   def self.member_since(user)
-    user_emails = EmailAddress.where(user: user).pluck(:email)
-    return nil if user_emails.empty?
-    users = self.find_by_email(user_emails)
-    return nil if users.empty?
-    start_date = users.map { |user| user["First Engagement At"] }.min
-    Date.parse(start_date)
+    Rails.cache.fetch("hack_clubber_member_since_#{user.id}", expires_in: 1.hour) do
+      user_emails = EmailAddress.where(user: user).pluck(:email)
+      return nil if user_emails.empty?
+      users = self.find_by_email(user_emails)
+      return nil if users.empty?
+      start_date = users.map { |user| user["First Engagement At"] }.min
+      Date.parse(start_date)
+    end
   end
 
   def self.find_by_email(emails)
