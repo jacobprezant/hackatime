@@ -1,0 +1,29 @@
+<%# app/views/memberships/show.html.erb %>
+<div class="container">
+  <% if @user %>
+    <h1>Membership for <%= render "shared/user_mention", user: @user %></h1>
+    
+    <div class="membership-details">
+      <p>Slack UID: <%= @user.slack_uid %></p>
+      <p>Member since: <%= @user.created_at.strftime("%B %d, %Y") %></p>
+      <% if @user.streak_days_formatted %>
+        <p>Current streak: <%= @user.streak_days_formatted %> days 🔥</p>
+      <% end %>
+    </div>
+
+    <%# list of ysws projects in @ysws_projects %>
+    <ul>
+      <% @ysws_projects.each do |project| %>
+        <li>
+          <span class="project-name"><%= project["Name"] %></span>
+          <span class="super"><%= project["Hours Spent"] %>hrs</span>
+          <%= link_to "Play", project["Playable URL"], target: "_blank" %>
+          <%= link_to "Code", project["Code URL"], target: "_blank" %>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <h1>User Not Found</h1>
+    <p>The requested user could not be found.</p>
+  <% end %>
+</div> 

@@ -62,6 +62,11 @@ Rails.application.routes.draw do
   patch "my/settings", to: "users#update"
   post "my/settings/migrate_heartbeats", to: "users#migrate_heartbeats", as: :my_settings_migrate_heartbeats
 
+  # Membership routes
+  get "membership", to: "memberships#index", as: :membership
+  get "my/membership", to: "memberships#my_membership", as: :my_membership
+  get ":slack_uid/membership", to: "memberships#show", as: :user_membership
+
   get "my/wakatime_setup", to: "users#wakatime_setup"
   get "my/wakatime_setup/step-2", to: "users#wakatime_setup_step_2"
   get "my/wakatime_setup/step-3", to: "users#wakatime_setup_step_3"

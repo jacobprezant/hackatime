@@ -1,0 +1,37 @@
+<%# app/views/memberships/index.html.erb %>
+<div class="container">
+  <h1>Hack Club Membership</h1>
+  
+  <div class="membership-perks">
+    <h2>Membership Perks</h2>
+    
+    <div class="perk">
+      <h3>🔥 Streak Tracking</h3>
+      <p>Track your coding streak and see how many days in a row you've been coding!</p>
+    </div>
+    
+    <div class="perk">
+      <h3>📊 Activity Dashboard</h3>
+      <p>View your coding activity and see your progress over time.</p>
+    </div>
+    
+    <div class="perk">
+      <h3>🏆 Leaderboards</h3>
+      <p>Compete with other members on the leaderboards and see where you rank!</p>
+    </div>
+    
+    <div class="perk">
+      <h3>🤝 Community Access</h3>
+      <p>Connect with other Hack Club members and share your projects.</p>
+    </div>
+  </div>
+  
+  <div class="cta">
+    <h2>Ready to Join?</h2>
+    <% if current_user %>
+      <p>You're already a member! Check out your <%= link_to "membership status", my_membership_path %>.</p>
+    <% else %>
+      <p><%= link_to "Sign in with Slack", slack_auth_path, class: "button" %> to become a member!</p>
+    <% end %>
+  </div>
+</div> 

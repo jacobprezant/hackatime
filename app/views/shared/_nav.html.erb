@@ -33,6 +33,17 @@
         Leaderboards
       <% end %>
     </li>
+    <li>
+      <% if current_user %>
+        <%= link_to my_membership_path, class: "nav-item #{current_page?(my_membership_path) ? 'active' : ''}" do %>
+          Membership
+        <% end %>
+      <% else %>
+        <%= link_to membership_path, class: "nav-item #{current_page?(membership_path) ? 'active' : ''}" do %>
+          Membership
+        <% end %>
+      <% end %>
+    </li>
     <% if current_user %>
       <li>
         <%= link_to my_settings_path, class: "nav-item #{current_page?(my_settings_path) ? 'active' : ''}" do %>
