@@ -9,7 +9,14 @@ class Membership
   end
 
   def total_hours
-    @total_hours ||= ysws_projects.sum { |project| project["Hours Spent"] }
+    @total_hours ||= ysws_projects.sum do |project|
+      # handle if the Hours Spent is an array
+      if project["Hours Spent"].is_a?(Array)
+        project["Hours Spent"].first
+      else
+        project["Hours Spent"] || 0.0
+      end
+    end
   end
 
   def ysws_projects
@@ -28,7 +35,7 @@ class Membership
       :bronze
     when 20...30
       :silver
-    when 30...40
+    else
       :gold
     end
   end

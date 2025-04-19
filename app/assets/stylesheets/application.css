@@ -295,10 +295,18 @@
 
 .avatar-container {
   position: relative;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-  z-index: 1;
-  margin-left: -15px;
+  display: inline-block;
+}
+
+.avatar-container .status-icon {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid white;
+  margin: 0;
 }
 
 .avatar-container:first-child {
@@ -551,6 +559,10 @@ code {
 
 .status-card:hover .status-icon {
   transform: scale(1.05);
+}
+
+.status-icon.basic {
+  background: var(--uchu-green);
 }
 
 .status-icon.bronze {

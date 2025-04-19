@@ -1,8 +1,12 @@
 <div class="user-info <%= current_user == user ? "current-user" : "" %>">
-  <%= image_tag user.avatar_url,
-                size: "32x32",
-                class: "avatar",
-                alt: "#{user.username}'s avatar" if user.avatar_url %>
+  <div class="avatar-container">
+    <%= image_tag user.avatar_url,
+                  size: "32x32",
+                  class: "avatar",
+                  alt: "#{user.username}'s avatar" if user.avatar_url %>
+    <% membership = Membership.new(user) %>
+    <div class="status-icon <%= membership.current_status %>"></div>
+  </div>
   <% if local_assigns.fetch(:show, []).include?(:slack) && user.slack_uid.present? %>
     <%= link_to "@#{user.display_name}", "https://slack.com/app_redirect?channel=#{user.slack_uid}", target: "_blank" %>
   <% else %>

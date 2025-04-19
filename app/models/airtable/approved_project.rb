@@ -12,11 +12,14 @@ class Airtable::ApprovedProject < Airrecord::Table
   def self.find_by_user(user)
     emails = EmailAddress.where(user: user).pluck(:email)
     puts "emails: #{emails}"
+    start_date = Date.new(2025, 3, 19)
     if emails.none?
       []
     elsif emails.length == 1
       puts "searching for #{emails.first}"
-      result = self.all(filter: "{Email} = \"#{emails.first}\"")
+      filter = "AND({Email} = '#{emails.first}', {Approved At} >= '#{start_date.strftime("%d/%m/%Y")}')"
+      puts "filter: #{filter}"
+      result = self.all(filter: filter)
       puts "result: #{result}"
       result
     else

@@ -1,7 +1,7 @@
 <%# app/views/memberships/show.html.erb %>
 <div class="container">
-  <% if @user %>
-    <h1>Membership for <%= render "shared/user_mention", user: @user %></h1>
+  <% if @membership.user %>
+    <h1>Membership for <%= render "shared/user_mention", user: @membership.user %></h1>
     
     <div class="premium-card-showcase">
       <div class="cards-row">
@@ -42,8 +42,8 @@
           <span class="super">(<%= time_ago_in_words(@membership.member_since) %> ago)</span>
         </p>
       <% end %>
-      <% if @user.streak_days_formatted %>
-        <p>Current streak: <%= @user.streak_days_formatted %> days 🔥</p>
+      <% if @membership.user.streak_days_formatted %>
+        <p>Current streak: <%= @membership.user.streak_days_formatted %> days 🔥</p>
       <% end %>
     </div>
 

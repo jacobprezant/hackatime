@@ -1,5 +1,5 @@
 class MembershipsController < ApplicationController
-  before_action :set_membership, only: [ :show ]
+  before_action :set_membership, only: [ :show, :my_membership ]
 
   def index
     # Public page about membership perks
@@ -16,12 +16,14 @@ class MembershipsController < ApplicationController
   private
 
   def set_membership
-    @membership = Membership.new(set_user)
+    set_user
+    puts @user.inspect
+    @membership = Membership.new(@user)
   end
 
   def set_user
     @user = begin
-      if params[:slack_uid] == "my"
+      if params[:slack_uid] == "my" || params[:slack_uid].blank?
         current_user
       else
         User.find_by!(slack_uid: params[:slack_uid])
