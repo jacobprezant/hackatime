@@ -7,6 +7,8 @@ class MembershipsController < ApplicationController
 
   def my_membership
     @user = current_user
+    @ysws_projects = get_ysws_projects
+    @member_since = Airtable::HackClubber.member_since(@user)
     render :show
   end
 
@@ -14,6 +16,7 @@ class MembershipsController < ApplicationController
     # Public view of a specific user's membership
     @user = User.find_by!(slack_uid: params[:slack_uid])
     @ysws_projects = get_ysws_projects
+    @member_since = Airtable::HackClubber.member_since(@user)
   end
 
   private

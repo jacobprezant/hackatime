@@ -4,19 +4,22 @@
     <h1>Membership for <%= render "shared/user_mention", user: @user %></h1>
     
     <div class="membership-details">
-      <p>Slack UID: <%= @user.slack_uid %></p>
-      <p>Member since: <%= @user.created_at.strftime("%B %d, %Y") %></p>
+      <% if @member_since %>
+        <p title="<%= @member_since.strftime("%B %d, %Y") %>">
+          Member Since <%= @member_since.strftime("%b '%y") %>
+          <span class="super">(<%= time_ago_in_words(@member_since) %> ago)</span>
+        </p>
+      <% end %>
       <% if @user.streak_days_formatted %>
         <p>Current streak: <%= @user.streak_days_formatted %> days 🔥</p>
       <% end %>
     </div>
 
-    <%# list of ysws projects in @ysws_projects %>
     <ul>
       <% @ysws_projects.each do |project| %>
         <li>
-          <span class="project-name"><%= project["Name"] %></span>
-          <span class="super"><%= project["Hours Spent"] %>hrs</span>
+          <span class="project-name"><%= project["Code URL"] %></span>
+          <span class="super"><%= (project["Hours Spent"] || 0).round(1) %>hrs</span>
           <%= link_to "Play", project["Playable URL"], target: "_blank" %>
           <%= link_to "Code", project["Code URL"], target: "_blank" %>
         </li>
