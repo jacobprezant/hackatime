@@ -5,8 +5,8 @@
     
     <div class="membership-details">
       <% if @member_since %>
-        <p>
-          Member since: <%= @member_since.strftime("%B %d, %Y") %>
+        <p title="<%= @member_since.strftime("%B %d, %Y") %>">
+          Member Since <%= @member_since.strftime("%b '%y") %>
           <span class="super">(<%= time_ago_in_words(@member_since) %> ago)</span>
         </p>
       <% end %>
