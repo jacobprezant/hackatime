@@ -1,6 +1,192 @@
 <%# app/views/memberships/index.html.erb %>
 <div class="container">
+  <div class="membership-banner">
+    <%= image_tag "/membership-banner.jpg", alt: "Hack Club Membership Banner", class: "img-fluid" %>
+    <!-- Debug: Image path: /membership-banner.jpg -->
+  </div>
+  
   <h1>Hack Club Membership</h1>
+  
+  <p class="membership-description">
+    Hack Club Preferred® status gives you access to an elevated experience in Hack Club, and incentivizes you to ship more projects through the year!
+  </p>
+  
+  <div class="status-check">
+    <%= link_to "Check my status", my_membership_path, class: "button" %>
+  </div>
+  
+  <div class="preferred-status-section">
+    <h2>Preferred Status Levels</h2>
+    
+    <p class="status-explanation">
+      Preferred status is earned by shipping projects and being active in the community. To qualify, you must ship at least 4 projects.
+      You also have to earn enough Preferred qualifying projects (PQP) and Preferred qualifying points (PQPt).
+    </p>
+
+    <div class="status-grid">
+      <div class="status-card">
+        <div class="status-icon bronze"></div>
+        <h3>Preferred Bronze</h3>
+        <div class="requirements">
+          <p>15 PQP and 5,000 PQPt</p>
+          <p class="or">or</p>
+          <p>6,000 PQPt</p>
+        </div>
+      </div>
+
+      <div class="status-card">
+        <div class="status-icon silver"></div>
+        <h3>Preferred Silver</h3>
+        <div class="requirements">
+          <p>30 PQP and 10,000 PQPt</p>
+          <p class="or">or</p>
+          <p>12,000 PQPt</p>
+        </div>
+      </div>
+
+      <div class="status-card">
+        <div class="status-icon gold"></div>
+        <h3>Preferred Gold</h3>
+        <div class="requirements">
+          <p>45 PQP and 15,000 PQPt</p>
+          <p class="or">or</p>
+          <p>18,000 PQPt</p>
+        </div>
+      </div>
+
+      <div class="status-card">
+        <div class="status-icon diamond"></div>
+        <h3>Preferred Diamond</h3>
+        <div class="requirements">
+          <p>60 PQP and 22,000 PQPt</p>
+          <p class="or">or</p>
+          <p>28,000 PQPt</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="preferred-benefits-section">
+    <h2>Preferred Status Benefits</h2>
+    
+    <p class="benefits-intro">
+      Here are some of the top benefits you'll get with Preferred status. Each tier unlocks additional perks and multipliers.
+    </p>
+
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <h3>Preferred Bronze</h3>
+        <ul class="benefits-list">
+          <li>
+            <i class="benefit-icon">🎯</i>
+            Early access to new features
+          </li>
+          <li>
+            <i class="benefit-icon">👥</i>
+            Access to exclusive channels for you + 1 friend
+          </li>
+          <li>
+            <i class="benefit-icon">⚡️</i>
+            2x points multiplier on shipped projects
+          </li>
+          <li>
+            <i class="benefit-icon">🎨</i>
+            Custom profile themes
+          </li>
+          <li>
+            <i class="benefit-icon">⭐️</i>
+            7x bonus points on contributions
+          </li>
+        </ul>
+      </div>
+
+      <div class="benefit-card">
+        <h3>Preferred Silver</h3>
+        <ul class="benefits-list">
+          <li>
+            <i class="benefit-icon">🎯</i>
+            Priority access to new features
+          </li>
+          <li>
+            <i class="benefit-icon">👥</i>
+            Access to exclusive channels for you + 2 friends
+          </li>
+          <li>
+            <i class="benefit-icon">⚡️</i>
+            3x points multiplier on shipped projects
+          </li>
+          <li>
+            <i class="benefit-icon">🎨</i>
+            Animated profile themes
+          </li>
+          <li>
+            <i class="benefit-icon">⭐️</i>
+            8x bonus points on contributions
+          </li>
+        </ul>
+      </div>
+
+      <div class="benefit-card">
+        <h3>Preferred Gold</h3>
+        <ul class="benefits-list">
+          <li>
+            <i class="benefit-icon">🎯</i>
+            Instant access to all new features
+          </li>
+          <li>
+            <i class="benefit-icon">👥</i>
+            Access to exclusive channels for you + 8 friends
+          </li>
+          <li>
+            <i class="benefit-icon">⚡️</i>
+            4x points multiplier on shipped projects
+          </li>
+          <li>
+            <i class="benefit-icon">🎨</i>
+            Custom animated profile themes
+          </li>
+          <li>
+            <i class="benefit-icon">⭐️</i>
+            9x bonus points on contributions
+          </li>
+          <li>
+            <i class="benefit-icon">🎁</i>
+            Earn 40 bonus points after reaching Gold
+          </li>
+        </ul>
+      </div>
+
+      <div class="benefit-card">
+        <h3>Preferred Diamond</h3>
+        <ul class="benefits-list">
+          <li>
+            <i class="benefit-icon">🎯</i>
+            Beta testing access to features
+          </li>
+          <li>
+            <i class="benefit-icon">👥</i>
+            Access to exclusive channels for you + 8 friends
+          </li>
+          <li>
+            <i class="benefit-icon">⚡️</i>
+            5x points multiplier on shipped projects
+          </li>
+          <li>
+            <i class="benefit-icon">🎨</i>
+            Exclusive animated profile themes
+          </li>
+          <li>
+            <i class="benefit-icon">⭐️</i>
+            11x bonus points on contributions
+          </li>
+          <li>
+            <i class="benefit-icon">🎁</i>
+            Earn 280 bonus points after reaching Diamond
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
   
   <div class="membership-perks">
     <h2>Membership Perks</h2>
