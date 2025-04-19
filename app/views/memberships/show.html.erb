@@ -4,10 +4,10 @@
     <h1>Membership for <%= render "shared/user_mention", user: @user %></h1>
     
     <div class="membership-details">
-      <% if @member_since %>
-        <p title="<%= @member_since.strftime("%B %d, %Y") %>">
-          Member Since <%= @member_since.strftime("%b '%y") %>
-          <span class="super">(<%= time_ago_in_words(@member_since) %> ago)</span>
+      <% if @membership.member_since %>
+        <p title="<%= @membership.member_since.strftime("%B %d, %Y") %>">
+          Member Since <%= @membership.member_since.strftime("%b '%y") %>
+          <span class="super">(<%= time_ago_in_words(@membership.member_since) %> ago)</span>
         </p>
       <% end %>
       <% if @user.streak_days_formatted %>
@@ -16,7 +16,7 @@
     </div>
 
     <ul>
-      <% @ysws_projects.each do |project| %>
+      <% @membership.ysws_projects.each do |project| %>
         <li>
           <span class="project-name"><%= project["Code URL"] %></span>
           <span class="super"><%= (project["Hours Spent"] || 0).round(1) %>hrs</span>

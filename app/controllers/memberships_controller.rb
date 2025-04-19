@@ -1,25 +1,23 @@
 class MembershipsController < ApplicationController
-  before_action :authenticate_user!, only: [ :my_membership ]
+  before_action :set_membership, only: [ :show ]
 
   def index
     # Public page about membership perks
   end
 
   def my_membership
-    @user = current_user
-    @ysws_projects = get_ysws_projects
-    @member_since = Airtable::HackClubber.member_since(@user)
     render :show
   end
 
   def show
     # Public view of a specific user's membership
-    @user = User.find_by!(slack_uid: params[:slack_uid])
-    @ysws_projects = get_ysws_projects
-    @member_since = Airtable::HackClubber.member_since(@user)
   end
 
   private
+
+  def set_membership
+    @membership = Membership.new(set_user)
+  end
 
   def set_user
     @user = begin
@@ -31,10 +29,5 @@ class MembershipsController < ApplicationController
     rescue
       nil
     end
-  end
-
-  def get_ysws_projects
-    return [] if @user.nil?
-    Airtable::ApprovedProject.find_by_user(@user)
   end
 end
