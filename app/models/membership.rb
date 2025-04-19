@@ -31,12 +31,14 @@ class Membership
     case total_hours
     when 0...10
       :basic
-    when 10...20
+    when 10...80
       :bronze
-    when 20...30
+    when 80...200
       :silver
-    else
+    when 200...500
       :gold
+    else
+      :diamond
     end
   end
 end
