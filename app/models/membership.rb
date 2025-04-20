@@ -47,4 +47,14 @@ class Membership
       :diamond
     end
   end
+
+  def humanized_status
+    {
+      basic: "Basic",
+      bronze: "Preferred Bronze",
+      silver: "Preferred Silver",
+      gold: "Preferred Gold",
+      diamond: "Preferred Diamond"
+    }[current_status]
+  end
 end
