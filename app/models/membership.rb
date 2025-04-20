@@ -11,20 +11,26 @@ class Membership
   def total_hours
     @total_hours ||= ysws_projects.sum do |project|
       # handle if the Hours Spent is an array
-      if project["Hours Spent"].is_a?(Array)
-        project["Hours Spent"].first
+      if project["hours_spent"].is_a?(Array)
+        project["hours_spent"].first
       else
-        project["Hours Spent"] || 0.0
+        project["hours_spent"] || 0.0
       end
-    end
+    end.round(1)
   end
 
   def ysws_projects
-    @ysws_projects ||= Airtable::ApprovedProject.find_by_user(@user)
+    @ysws_projects ||= begin
+      user_emails = @user.email_addresses.pluck(:email)
+      ::Warehouse::UnifiedYsws::ApprovedProject.where(email: user_emails)
+    end
   end
 
   def member_since
-    @member_since ||= Airtable::HackClubber.member_since(@user)
+    @member_since ||= begin
+      user_emails = @user.email_addresses.pluck(:email)
+      ::Warehouse::ProgramEngagement::HackClubber.where(email: user_emails).minimum(:first_engagement_at)
+    end
   end
 
   def current_status
