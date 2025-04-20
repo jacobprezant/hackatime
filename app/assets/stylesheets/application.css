@@ -310,26 +310,25 @@
   width: 16px;
   height: 16px;
   margin: 0;
-  padding: 1px;
 }
 
-.status-icon.basic { 
+.avatar-container .status-icon.basic { 
   fill: var(--basic-color);
 }
 
-.status-icon.bronze { 
+.avatar-container .status-icon.bronze { 
   fill: var(--bronze-color);
 }
 
-.status-icon.silver { 
+.avatar-container .status-icon.silver { 
   fill: var(--silver-color);
 }
 
-.status-icon.gold { 
+.avatar-container .status-icon.gold { 
   fill: var(--gold-color);
 }
 
-.status-icon.diamond { 
+.avatar-container .status-icon.diamond { 
   fill: var(--diamond-color);
 }
 
@@ -503,4 +502,34 @@
 /* Prevent overflow */
 code {
   word-break: break-word;
+}
+
+/* Status icons in membership index */
+.status-card .status-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  border: 2px solid white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.status-card .status-icon.basic { 
+  background: var(--basic-color);
+}
+
+.status-card .status-icon.bronze { 
+  background: var(--bronze-color);
+}
+
+.status-card .status-icon.silver { 
+  background: var(--silver-color);
+}
+
+.status-card .status-icon.gold { 
+  background: var(--gold-color);
+}
+
+.status-card .status-icon.diamond { 
+  background: var(--diamond-color);
 }
