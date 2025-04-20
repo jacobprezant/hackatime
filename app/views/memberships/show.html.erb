@@ -50,10 +50,11 @@
     <ul>
       <% @membership.ysws_projects.each do |project| %>
         <li>
-          <span class="project-name"><%= project["Code URL"] %></span>
-          <span class="super"><%= (project["Hours Spent"] || 0).round(1) %>hrs</span>
-          <%= link_to "Play", project["Playable URL"], target: "_blank" %>
-          <%= link_to "Code", project["Code URL"], target: "_blank" %>
+          <span class="project-name"><%= project["code_url"] %></span>
+          <span class="super"><%= project["hours_spent"].round(1) %>hrs</span>
+          <%= link_to "Play", project["playable_url"], target: "_blank" %>
+          <%= link_to "Code", project["code_url"], target: "_blank" %>
+          <span class="super"><%= project["ysws_name"].first %></span>
         </li>
       <% end %>
     </ul>
