@@ -18,8 +18,13 @@
   --muted-color: var(--uchu-gray);
   --black: rgb(42, 42, 42);
   --smoke: rgb(242, 242, 242);
-  /* color: var(--black); */
-  /* background-color: var(--smoke); */
+  
+  /* Status colors */
+  --basic-color: #1fa0eb;
+  --bronze-color: #CD7F32;
+  --silver-color: #E8E8E8;
+  --gold-color: #FFD700;
+  --diamond-color: #B9F2FF;
 }
 
 :root.development {
@@ -300,22 +305,36 @@
 
 .avatar-container .status-icon {
   position: absolute;
-  bottom: -2px;
-  right: -2px;
+  bottom: -3px;
+  right: -3px;
   width: 16px;
   height: 16px;
-  border-radius: 50%;
-  border: 2px solid white;
   margin: 0;
+  padding: 1px;
+}
+
+.status-icon.basic { 
+  fill: var(--basic-color);
+}
+
+.status-icon.bronze { 
+  fill: var(--bronze-color);
+}
+
+.status-icon.silver { 
+  fill: var(--silver-color);
+}
+
+.status-icon.gold { 
+  fill: var(--gold-color);
+}
+
+.status-icon.diamond { 
+  fill: var(--diamond-color);
 }
 
 .avatar-container:first-child {
   margin-left: 0;
-}
-
-.avatar-container:hover {
-  transform: translateY(-3px);
-  z-index: 5;
 }
 
 .setup-avatar {

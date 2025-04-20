@@ -1,17 +1,7 @@
-/* Status level gradients */
-:root {
-  --basic-gradient: linear-gradient(135deg, #93e9b3 0%, #1feb85 100%);
-  --bronze-gradient: linear-gradient(135deg, #CD7F32 0%, #8B4513 100%);
-  --silver-gradient: linear-gradient(135deg, #E8E8E8 0%, #A8A8A8 100%);
-  --gold-gradient: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
-  --diamond-gradient: linear-gradient(135deg, #E8F5F7 0%, #B9F2FF 100%);
-}
-
 /* Status icons - global styles */
 .status-icon {
   width: 40px;
   height: 40px;
-  border-radius: 50%;
   margin-bottom: 1.5rem;
   transition: transform 0.4s cubic-bezier(0.2, 1, 0.3, 1);
 }
@@ -21,28 +11,28 @@
 }
 
 .status-icon.basic {
-  background: var(--basic-gradient);
-  box-shadow: 0 4px 12px rgba(117, 154, 112, 0.2);
+  filter: drop-shadow(0 4px 12px rgba(117, 154, 112, 0.2));
+  color: #1fa0eb;
 }
 
 .status-icon.bronze {
-  background: var(--bronze-gradient);
-  box-shadow: 0 4px 12px rgba(205, 127, 50, 0.2);
+  filter: drop-shadow(0 4px 12px rgba(205, 127, 50, 0.2));
+  color: #CD7F32;
 }
 
 .status-icon.silver {
-  background: var(--silver-gradient);
-  box-shadow: 0 4px 12px rgba(192, 192, 192, 0.2);
+  filter: drop-shadow(0 4px 12px rgba(192, 192, 192, 0.2));
+  color: #E8E8E8;
 }
 
 .status-icon.gold {
-  background: var(--gold-gradient);
-  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.2);
+  filter: drop-shadow(0 4px 12px rgba(255, 215, 0, 0.2));
+  color: #FFD700;
 }
 
 .status-icon.diamond {
-  background: var(--diamond-gradient);
-  box-shadow: 0 4px 12px rgba(185, 242, 255, 0.3);
+  filter: drop-shadow(0 4px 12px rgba(185, 242, 255, 0.3));
+  color: #B9F2FF;
 }
 
 /* Membership page specific styles */
@@ -323,23 +313,23 @@
 
 /* Status-based card backgrounds */
 .basic .premium-card {
-  background: var(--basic-gradient);
+  background: linear-gradient(135deg, #93e9e9 0%, #1fa0eb 100%);
 }
 
 .bronze .premium-card {
-  background: var(--bronze-gradient);
+  background: linear-gradient(135deg, #CD7F32 0%, #8B4513 100%);
 }
 
 .silver .premium-card {
-  background: var(--silver-gradient);
+  background: linear-gradient(135deg, #E8E8E8 0%, #A8A8A8 100%);
 }
 
 .gold .premium-card {
-  background: var(--gold-gradient);
+  background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
 }
 
 .diamond .premium-card {
-  background: var(--diamond-gradient);
+  background: linear-gradient(135deg, #E8F5F7 0%, #B9F2FF 100%);
 }
 
 .card-container:hover .premium-card {
