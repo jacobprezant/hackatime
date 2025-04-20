@@ -13,6 +13,11 @@ Rails.application.routes.draw do
     mount GoodJob::Engine => "good_job"
 
     get "/impersonate/:id", to: "sessions#impersonate", as: :impersonate_user
+
+    # Membership routes
+    get "membership", to: "memberships#index", as: :membership
+    get "my/membership", to: "memberships#show", as: :my_membership, slack_uid: "my"
+    get ":slack_uid/membership", to: "memberships#show", as: :user_membership
   end
   get "/stop_impersonating", to: "sessions#stop_impersonating", as: :stop_impersonating
 
@@ -61,11 +66,6 @@ Rails.application.routes.draw do
   get "my/settings", to: "users#edit", as: :my_settings
   patch "my/settings", to: "users#update"
   post "my/settings/migrate_heartbeats", to: "users#migrate_heartbeats", as: :my_settings_migrate_heartbeats
-
-  # Membership routes
-  get "membership", to: "memberships#index", as: :membership
-  get "my/membership", to: "memberships#my_membership", as: :my_membership
-  get ":slack_uid/membership", to: "memberships#show", as: :user_membership
 
   get "my/wakatime_setup", to: "users#wakatime_setup"
   get "my/wakatime_setup/step-2", to: "users#wakatime_setup_step_2"
