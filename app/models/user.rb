@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  include MembershipRequirements
   has_paper_trail
   encrypts :slack_access_token, :github_access_token
 
@@ -365,6 +366,39 @@ class User < ApplicationRecord
 
   def find_valid_token(token)
     sign_in_tokens.valid.find_by(token: token)
+  end
+
+  def membership
+    @membership ||= Membership.new(self)
+  end
+
+  def total_hours
+    membership.total_hours
+  end
+
+  def ysws_projects
+    membership.ysws_projects
+  end
+
+  def member_since
+    membership.member_since
+  end
+
+  def current_status
+    MembershipRequirements.current_status(self)
+  end
+
+  def next_status
+    MembershipRequirements.next_status(current_status)
+  end
+
+  def eligible_for_status?(status)
+    MembershipRequirements.eligible_for_status?(self, status)
+  end
+
+  def eligible_for_next_status?
+    next_status_type = next_status
+    next_status_type && eligible_for_status?(next_status_type)
   end
 
   private

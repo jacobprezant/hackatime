@@ -5,6 +5,7 @@ class MembershipsController < ApplicationController
   end
 
   def show
+    @eligible_for_upgrade = @user.eligible_for_next_status?
   end
 
   private
