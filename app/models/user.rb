@@ -30,6 +30,14 @@ class User < ApplicationRecord
 
   delegate :streak_days, :streak_days_formatted, to: :heartbeats
 
+  enum :membership_type, {
+    basic: 0,
+    bronze: 1,
+    silver: 2,
+    gold: 3,
+    platinum: 4
+  }
+
   enum :hackatime_extension_text_type, {
     simple_text: 0,
     clock_emoji: 1,
