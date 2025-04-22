@@ -49,6 +49,8 @@
         <p>🎉 You're eligible to upgrade to <%= @user.next_status.to_s.titleize %> status!</p>
         <p>Upgrading will send you a physical card in the mail. You can either pay for it directly, or submit a YSWS project to cover your costs.</p>
 
+        <%= link_to "Request Upgrade", new_membership_upgrade_request_path, class: "button button-primary" %>
+
         <%# pay with $$$ %>
 
         <%# pay with ysws project %>

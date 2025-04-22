@@ -37,7 +37,8 @@ class User < ApplicationRecord
     silver: 2,
     gold: 3,
     platinum: 4
-  }
+  }, prefix: "membership"
+  enum :membership_eligibility_sent_for_status, User.membership_types, prefix: "sent_notice_of_membership"
 
   enum :hackatime_extension_text_type, {
     simple_text: 0,

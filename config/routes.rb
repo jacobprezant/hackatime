@@ -8,6 +8,8 @@ class AdminConstraint
 end
 
 Rails.application.routes.draw do
+  get "membership_upgrade_requests/new"
+  get "membership_upgrade_requests/create"
   constraints AdminConstraint do
     mount Avo::Engine, at: Avo.configuration.root_path
     mount GoodJob::Engine => "good_job"
@@ -97,4 +99,6 @@ Rails.application.routes.draw do
   end
 
   resources :scrapyard_leaderboards, only: [ :index, :show ]
+
+  resources :membership_upgrade_requests, only: [ :new, :create ]
 end
