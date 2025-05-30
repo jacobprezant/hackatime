@@ -61,7 +61,7 @@ class WakatimeService
 
     @total_days = (@end_time - @start_time) / 86400
     summary[:daily_average] = @total_days.zero? ? 0 : @total_seconds / @total_days
-    @days_including_holidays = @scope.distinct.count("DATE(timezone('#{@tz}', to_timestamp(time)))")
+    @days_including_holidays = @scope.distinct.count(Arel.sql("DATE(timezone(?, to_timestamp(time)))", @tz))
     summary[:days_including_holidays] = @days_including_holidays
 
     summary[:human_readable_total] = ApplicationController.helpers.short_time_detailed(@total_seconds)
